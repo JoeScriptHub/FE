@@ -1,22 +1,27 @@
 local TweenService = game:GetService("TweenService");
 local RunService = game:GetService("RunService");
 local TextService = game:GetService("TextService");
+
 local Player = game:GetService("Players").LocalPlayer;
+
 local NotifGui = Instance.new("ScreenGui");
 NotifGui.Name = "AkaliNotif";
 NotifGui.Parent = RunService:IsStudio() and Player.PlayerGui or game:GetService("CoreGui");
+
 local Container = Instance.new("Frame");
 Container.Name = "Container";
 Container.Position = UDim2.new(0, 20, 0.5, -20);
 Container.Size = UDim2.new(0, 300, 0.5, 0);
 Container.BackgroundTransparency = 1;
 Container.Parent = NotifGui;
+
 local function Image(ID, Button)
 	local NewImage = Instance.new(string.format("Image%s", Button and "Button" or "Label"));
 	NewImage.Image = ID;
 	NewImage.BackgroundTransparency = 1;
 	return NewImage;
 end
+
 local function Round2px()
 	local NewImage = Image("http://www.roblox.com/asset/?id=5761488251");
 	NewImage.ScaleType = Enum.ScaleType.Slice;
@@ -25,6 +30,7 @@ local function Round2px()
 	NewImage.ImageTransparency = 0.14
 	return NewImage;
 end
+
 local function Shadow2px()
 	local NewImage = Image("http://www.roblox.com/asset/?id=5761498316");
 	NewImage.ScaleType = Enum.ScaleType.Slice;
@@ -34,13 +40,16 @@ local function Shadow2px()
 	NewImage.ImageColor3 = Color3.fromRGB(26, 26, 26);
 	return NewImage;
 end
+
 local Padding = 10;
 local DescriptionPadding = 10;
 local InstructionObjects = {};
 local TweenTime = 1;
 local TweenStyle = Enum.EasingStyle.Sine;
 local TweenDirection = Enum.EasingDirection.Out;
+
 local LastTick = tick();
+
 local function CalculateBounds(TableOfObjects)
 	local TableOfObjects = typeof(TableOfObjects) == "table" and TableOfObjects or {};
 	local X, Y = 0, 0;
@@ -50,7 +59,9 @@ local function CalculateBounds(TableOfObjects)
 	end
 	return {X = X, Y = Y, x = X, y = Y};
 end
+
 local CachedObjects = {};
+
 local function Update()
 	local DeltaTime = tick() - LastTick;
 	local PreviousObjects = {};
@@ -74,16 +85,21 @@ local function Update()
 	CachedObjects = PreviousObjects;
 	LastTick = tick();
 end
+
 RunService:BindToRenderStep("UpdateList", 0, Update);
+
 local TitleSettings = {
 	Font = Enum.Font.GothamSemibold;
 	Size = 14;
 }
+
 local DescriptionSettings = {
 	Font = Enum.Font.Gotham;
 	Size = 14;
 }
+
 local MaxWidth = (Container.AbsoluteSize.X - Padding - DescriptionPadding);
+
 local function Label(Text, Font, Size, Button)
 	local Label = Instance.new(string.format("Text%s", Button and "Button" or "Label"));
 	Label.Text = Text;
@@ -95,23 +111,28 @@ local function Label(Text, Font, Size, Button)
 	Label.TextColor3 = Color3.fromRGB(255, 255, 255);
 	return Label;
 end
+
 local function TitleLabel(Text)
 	return Label(Text, TitleSettings.Font, TitleSettings.Size);
 end
+
 local function DescriptionLabel(Text)
 	return Label(Text, DescriptionSettings.Font, DescriptionSettings.Size);
 end
+
 local PropertyTweenOut = {
 	Text = "TextTransparency",
 	Fram = "BackgroundTransparency",
 	Imag = "ImageTransparency"
 }
+
 local function FadeProperty(Object)
 	local Prop = PropertyTweenOut[string.sub(Object.ClassName, 1, 4)];
 	TweenService:Create(Object, TweenInfo.new(0.25, TweenStyle, TweenDirection), {
 		[Prop] = 1;
 	}):Play();
 end
+
 local function SearchTableFor(Table, For)
 	for _, v in next, Table do
 		if (v == For) then
@@ -120,6 +141,7 @@ local function SearchTableFor(Table, For)
 	end
 	return false;
 end
+
 local function FindIndexByDependency(Table, Dependency)
 	for Index, Object in next, Table do
 		if (typeof(Object) == "table") then
@@ -134,12 +156,14 @@ local function FindIndexByDependency(Table, Dependency)
 		end
 	end
 end
+
 local function ResetObjects()
 	for _, Object in next, InstructionObjects do
 		Object[2] = 0;
 		Object[3] = false;
 	end
 end
+
 local function FadeOutAfter(Object, Seconds)
 	wait(Seconds);
 	FadeProperty(Object);
@@ -155,21 +179,10 @@ end
 return {
 	Notify = function(Properties)
 		local Properties = typeof(Properties) == "table" and Properties or {};
-
-    
-          
-            
-    
-
-          
-          Expand Down
-    
-    
-  
 		local Title = Properties.Title;
 		local Description = Properties.Description;
 		local Duration = Properties.Duration or 5;
-		if (Title) or (Description) then -- Check that user has provided title and/or description
+		if (Title) or (Description) then
 			local Y = Title and 26 or 0;
 			if (Description) then
 				local TextSize = TextService:GetTextSize(Description, DescriptionSettings.Size, DescriptionSettings.Font, Vector2.new(0, 0));
