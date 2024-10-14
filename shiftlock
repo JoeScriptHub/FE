@@ -11,7 +11,7 @@ shiftlockk.ResetOnSpawn = false
 LockButton.Name = "LockButton"
 LockButton.Parent = shiftlockk
 LockButton.AnchorPoint = Vector2.new(0.5, 0.5)
-LockButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LockButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 LockButton.BackgroundTransparency = 1.000
 LockButton.BorderColor3 = Color3.fromRGB(27, 42, 53)
 LockButton.Position = UDim2.new(0.785148501, 0, 0.865914762, 0)
@@ -32,7 +32,7 @@ btnIcon.Position = UDim2.new(0.100000001, 0, 0.100000001, 0)
 btnIcon.Size = UDim2.new(0.800000012, 0, 0.800000012, 0)
 btnIcon.ZIndex = 3
 btnIcon.Image = "rbxasset://textures/ui/mouseLock_off.png"
-btnIcon.ImageColor3 = Color3.fromRGB(0, 0, 0)
+btnIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
 btnIcon.ScaleType = Enum.ScaleType.Fit
 btnIcon.SliceCenter = Rect.new(-160, 0, 100, 0)
 
@@ -46,7 +46,7 @@ susDrag.Size = UDim2.new(0, 20, 0, 20)]]
 
 DragThingy = function(ui, dragui)
 	 if not dragui then dragui = ui end
-	 local UserInputService = game:GetService("UserInputService")
+	 local UserInputService = game:FindService("UserInputService")
 	 
 	 local dragging
 	 local dragInput
@@ -90,7 +90,7 @@ DragThingy(LockButton)
 local function YDYMLAX_fake_script()
 	local script = Instance.new('LocalScript', LockButton)
 
-	local Input = game:GetService("UserInputService")
+	local Input = game:FindService("UserInputService")
 	local V = false
 
 	local main = script.Parent
@@ -106,7 +106,7 @@ local function YDYMLAX_fake_script()
 	end)
 
 	local g = nil
-	local GameSettings = UserSettings():GetService("UserGameSettings")
+	local GameSettings = UserSettings():FindService("UserGameSettings")
 	local J = nil
 
 	function ForceShiftLock()
@@ -115,7 +115,7 @@ local function YDYMLAX_fake_script()
 		end)
 		_ = i
 		g = k
-		J = game:GetService("RunService").RenderStepped:Connect(function()
+		J = game:FindService("RunService").RenderStepped:Connect(function()
 			pcall(function()
 				GameSettings.RotationType = Enum.RotationType.CameraRelative
 			end)
