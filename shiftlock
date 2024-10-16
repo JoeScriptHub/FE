@@ -18,10 +18,10 @@ LockButton.Position = UDim2.new(0.785148501, 0, 0.865914762, 0)
 LockButton.Size = UDim2.new(0, 60, 0, 60)
 LockButton.ZIndex = 3
 LockButton.Image = "rbxassetid://530406505"
-LockButton.ImageColor3 = Color3.fromRGB(0, 170, 255)
+LockButton.ImageColor3 = Color3.fromRGB(0, 133, 199)
 LockButton.ImageRectOffset = Vector2.new(2, 2)
 LockButton.ImageRectSize = Vector2.new(98, 98)
-LockButton.ImageTransparency = 100
+LockButton.ImageTransparency = 0.400
 LockButton.ScaleType = Enum.ScaleType.Fit
 
 btnIcon.Name = "btnIcon"
