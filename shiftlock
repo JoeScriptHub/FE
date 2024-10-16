@@ -18,7 +18,7 @@ LockButton.Position = UDim2.new(0.785148501, 0, 0.865914762, 0)
 LockButton.Size = UDim2.new(0, 60, 0, 60)
 LockButton.ZIndex = 3
 LockButton.Image = "rbxassetid://530406505"
-LockButton.ImageColor3 = Color3.fromRGB(0, 133, 199)
+LockButton.ImageColor3 = Color3.fromRGB(0, 0, 0)
 LockButton.ImageRectOffset = Vector2.new(2, 2)
 LockButton.ImageRectSize = Vector2.new(98, 98)
 LockButton.ImageTransparency = 0.400
@@ -97,7 +97,7 @@ local function YDYMLAX_fake_script()
 
 	main.MouseButton1Click:Connect(function()
 		V = not V
-		main.btnIcon.ImageColor3 = V and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(0, 0, 0)
+		main.btnIcon.ImageColor3 = V and Color3.fromRGB(0, 170, 255) or Color3.fromRGB(255, 255, 255)
 		if V then
 			ForceShiftLock()
 		else
