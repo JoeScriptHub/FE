@@ -32,7 +32,7 @@ btnIcon.Position = UDim2.new(0.100000001, 0, 0.100000001, 0)
 btnIcon.Size = UDim2.new(0.800000012, 0, 0.800000012, 0)
 btnIcon.ZIndex = 3
 btnIcon.Image = "rbxasset://textures/ui/mouseLock_off.png"
-btnIcon.ImageColor3 = Color3.fromRGB(0, 0, 0)
+btnIcon.ImageColor3 = Color3.fromRGB(27, 42, 53)
 btnIcon.ScaleType = Enum.ScaleType.Fit
 btnIcon.SliceCenter = Rect.new(-160, 0, 100, 0)
 
